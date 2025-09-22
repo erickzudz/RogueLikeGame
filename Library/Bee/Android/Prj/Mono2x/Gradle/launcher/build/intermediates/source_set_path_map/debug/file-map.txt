@@ -1,9 +1,0 @@
-com.DefaultCompany.RogueLikeGame.launcher-pngs-0 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\pngs\debug
-com.DefaultCompany.RogueLikeGame.launcher-resValues-1 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\resValues\debug
-com.DefaultCompany.RogueLikeGame.launcher-rs-2 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\rs\debug
-com.DefaultCompany.RogueLikeGame.launcher-mergeDebugResources-3 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
-com.DefaultCompany.RogueLikeGame.launcher-mergeDebugResources-4 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
-com.DefaultCompany.RogueLikeGame.launcher-merged_res-5 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\merged_res\debug
-com.DefaultCompany.RogueLikeGame.launcher-debug-6 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\debug\res
-com.DefaultCompany.RogueLikeGame.launcher-main-7 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\res
-com.DefaultCompany.RogueLikeGame.launcher-packaged_res-8 D:\DISCO (D)\UNIVALLE\6toSemestre\RealiadadVirtualAumentada\RogueLikeGame\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\intermediates\packaged_res\debug
