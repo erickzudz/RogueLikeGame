@@ -27,7 +27,7 @@ public class RoomsCorridorsDungeon : MonoBehaviour
 
     public Vector2Int StartCell { get; private set; }
     public Transform SpawnAnchor { get; private set; }
-
+    public Vector2Int EndCell { get; internal set; }
 
     void Start() => Generate();
 
