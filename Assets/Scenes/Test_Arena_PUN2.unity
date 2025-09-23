@@ -258,10 +258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabPath: Prefabs/Player
-  enemyPrefabPath: Prefabs/SniperV2
+  enemyPrefabPath: Prefabs/Boss
   playerSpawnPos: {x: 0, y: 0.6, z: 0}
-  initialEnemies: 5
-  arenaRadius: 20
+  initialEnemies: 1
+  arenaRadius: 10
 --- !u!4 &1330006395
 Transform:
   m_ObjectHideFlags: 0
@@ -458,7 +458,7 @@ Transform:
   m_GameObject: {fileID: 1951813391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -26}
+  m_LocalPosition: {x: -7.1, y: 1, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

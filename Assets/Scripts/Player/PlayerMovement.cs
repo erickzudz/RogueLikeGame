@@ -16,13 +16,26 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (pv && !pv.IsMine) return; // solo dueño procesa input
+        if (pv && !pv.IsMine) return; // solo mi jugador procesa input
 
+        // 1) Lee teclado/mouse por defecto
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
+
+        // 2) Si hay HUD móvil, el joystick sobreescribe
+        if (MobileHUD.I && MobileHUD.I.joystick)
+        {
+            var a = MobileHUD.I.joystick.Axis; // (-1..1)
+            h = a.x;
+            v = a.y;
+            // Si estoy usando joystick, apunto con el movimiento
+            if (a.sqrMagnitude > 0.001f) faceMouse = false;
+        }
+
         Vector3 input = new Vector3(h, 0, v).normalized;
         cc.SimpleMove(input * moveSpeed);
 
+        // 3) Rotación
         if (faceMouse && cam)
         {
             Ray r = cam.ScreenPointToRay(Input.mousePosition);
@@ -39,7 +52,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (input.sqrMagnitude > 0.001f)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(input), rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation, Quaternion.LookRotation(input), rotationSpeed * Time.deltaTime);
         }
     }
+
 }

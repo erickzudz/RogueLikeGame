@@ -1,53 +1,44 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController : MonoBehaviourPun
 {
-    [Header("Refs")]
     [SerializeField] Transform firePoint;
-    [SerializeField] string bulletResourcePath = "Prefabs/Bullet"; // ruta en Resources
+    [SerializeField] string bulletResourcePath = "Prefabs/Bullet";
 
     [Header("Stats")]
     [SerializeField] float baseDamage = 1f;
-    [SerializeField] float bulletSpeed = 14f;
-    [SerializeField] float fireRate = 4f;     // disparos/seg
+    [SerializeField] float bulletSpeed = 12f;
+    [SerializeField] float fireRate = 6f;     // disparos por segundo
     [SerializeField] float critChance = 0.1f; // 10%
+    [SerializeField] float stunOnHit = 0f;    // opcional
 
-    StunReceiver stun;
-    PhotonView pv;
     float nextFire;
-
-    void Awake()
-    {
-        pv = GetComponent<PhotonView>();
-        stun = GetComponent<StunReceiver>();
-        if (!firePoint) firePoint = transform;
-    }
 
     void Update()
     {
-        // solo el dueño procesa input
-        if (pv && !pv.IsMine) return;
-
-        if (stun != null && stun.IsStunned) return;
+        if (!photonView.IsMine) return;
         if (Time.time < nextFire) return;
 
-        // LEFT CLICK (Mouse0). Si prefieres InputActionsWrapper, puedes OR con él.
-        bool firePressed = Input.GetMouseButton(0);
-        if (firePressed)
+        // lee EN UPDATE (siempre actualizado)
+        bool fireHeldMobile = MobileHUD.I && MobileHUD.I.fireBtn && MobileHUD.I.fireBtn.IsHeld;
+        bool fireHeldMouse = Input.GetMouseButton(0);
+
+        if (fireHeldMobile || fireHeldMouse)
         {
-            nextFire = Time.time + 1f / Mathf.Max(0.01f, fireRate);
+            nextFire = Time.time + (1f / fireRate);
 
-            Vector3 pos = firePoint ? firePoint.position : transform.position + transform.forward * 0.6f;
-            Vector3 dir = firePoint ? firePoint.forward : transform.forward;
-
-            // Calcula daño (crítico) en el owner y lo manda a todos
+            Vector3 dir = (firePoint ? firePoint.forward : transform.forward).normalized;
+            Vector3 pos = firePoint ? firePoint.position : (transform.position + transform.forward * 0.6f);
             float dmg = (Random.value <= critChance) ? baseDamage * 2f : baseDamage;
 
-            // PUN: pasa datos en InstantiationData para que TODOS los clientes inicialicen la bala igual
-            object[] data = new object[] { dir, dmg, bulletSpeed };
-
-            PhotonNetwork.Instantiate(bulletResourcePath, pos, Quaternion.LookRotation(dir), 0, data);
+            PhotonNetwork.Instantiate(
+                bulletResourcePath,
+                pos,
+                Quaternion.LookRotation(dir),
+                0,
+                new object[] { dir, dmg, bulletSpeed, stunOnHit }
+            );
         }
     }
 }

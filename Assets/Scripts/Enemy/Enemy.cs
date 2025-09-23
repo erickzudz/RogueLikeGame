@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using Photon.Pun;
 // opcional: using UnityEngine.AI;
@@ -12,7 +12,7 @@ public enum EnemyType
     Dasher,         // Kamikaze + stun al contacto
     Basher,         // Sniper + balas que stunean
     ShooterSpread,  // cono/burst
-    SniperV2        // ráfaga precisa
+    SniperV2        // rÃ¡faga precisa
 }
 
 [RequireComponent(typeof(PhotonView))]
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviourPunCallbacks
     [Header("Stats")]
     public float maxLife = 3f;
     public float speed = 2f;
-    public float damage = 1f;                 // daño de bala / contacto
+    public float damage = 1f;                 // daÃ±o de bala / contacto
 
     [Header("Ranges")]
     public float aggroRange = 8f;             // detectar y perseguir
@@ -187,7 +187,7 @@ public class Enemy : MonoBehaviourPunCallbacks
             case EnemyType.Sniper:
             case EnemyType.SniperV2:
                 if (dist > shootRange) MoveTowards(target.position, 1f);
-                // si está en rango y es “stopToShoot”, no avanza
+                // si estÃ¡ en rango y es â€œstopToShootâ€, no avanza
                 break;
 
             case EnemyType.Basher:
@@ -222,7 +222,7 @@ public class Enemy : MonoBehaviourPunCallbacks
     // -------- helpers --------
     void MoveTowards(Vector3 worldPos, float mult)
     {
-        // con NavMesh sería SetDestination; aquí nos movemos directo
+        // con NavMesh serÃ­a SetDestination; aquÃ­ nos movemos directo
         Vector3 dir = worldPos - transform.position; dir.y = 0f;
         if (dir.sqrMagnitude > 0.0001f) dir.Normalize();
 

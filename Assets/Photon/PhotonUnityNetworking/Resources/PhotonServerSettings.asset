@@ -41,6 +41,8 @@ MonoBehaviour:
   - RespawnSpaceship
   - RPC_SetStunUntil
   - RPC_SetInit
+  - RPC_RequestStun
+  - RPC_SetStun
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

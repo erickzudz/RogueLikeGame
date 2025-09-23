@@ -231,8 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b24b06468090d47a9799ca8f899d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
-  rotationSpeed: 720
+  moveSpeed: 9
+  rotationSpeed: 1000
   faceMouse: 1
 --- !u!114 &3128235205735832836
 MonoBehaviour:
@@ -252,6 +252,7 @@ MonoBehaviour:
   bulletSpeed: 14
   fireRate: 6
   critChance: 0.1
+  stunOnHit: 0
 --- !u!114 &4495428935332203853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,6 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7179839039312388233}
   - component: {fileID: 6979288141814758490}
+  - component: {fileID: 5503373332672657969}
   m_Layer: 7
   m_Name: Hitbox
   m_TagString: Player
@@ -335,3 +337,15 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5503373332672657969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7586621469781205135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820799a6fecba864da73cb6223ac835b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
