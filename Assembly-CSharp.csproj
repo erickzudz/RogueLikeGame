@@ -76,9 +76,11 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\TopDownFollowCam.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAnimatorBridgePhoton.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Player\Health.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerNetwork.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorBridge.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
