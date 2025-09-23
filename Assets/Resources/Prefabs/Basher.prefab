@@ -208,24 +208,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38535468c389593469593238609b9e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 7
+  type: 5
   maxLife: 3
-  speed: 1.6
+  speed: 2
   damage: 1
   aggroRange: 8
-  shootRange: 11
+  shootRange: 10.5
   meleeRange: 1.6
-  timeBtwShoot: 1.6
-  burstCount: 3
-  burstInterval: 0.07
-  spreadAngle: 4
+  timeBtwShoot: 1.7
+  burstCount: 1
+  burstInterval: 0.08
+  spreadAngle: 0
   shootWhileChasing: 0
   aimAtTarget: 1
-  projSpeed: 20
+  projSpeed: 18
   stopToShoot: 1
   kamikazeSpeedMult: 2
   firePoint: {fileID: 5811282853029870869}
-  bulletResourcePath: Prefabs/EnemyBullet
+  bulletResourcePath: Prefabs/BulletBasher
   explosionEffect: {fileID: 0}
 --- !u!114 &4017614108637897007
 MonoBehaviour:
