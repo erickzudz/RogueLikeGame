@@ -20,25 +20,20 @@ public class WeaponController : MonoBehaviourPun
         if (!photonView.IsMine) return;
         if (Time.time < nextFire) return;
 
-        // lee EN UPDATE (siempre actualizado)
-        bool fireHeldMobile = MobileHUD.I && MobileHUD.I.fireBtn && MobileHUD.I.fireBtn.IsHeld;
-        bool fireHeldMouse = Input.GetMouseButton(0);
+        bool fireHeld = Input.GetMouseButton(0);
+        if (MobileHUD.I && MobileHUD.I.fireBtn) fireHeld |= MobileHUD.I.fireBtn.IsHeld;
 
-        if (fireHeldMobile || fireHeldMouse)
-        {
-            nextFire = Time.time + (1f / fireRate);
+        if (!fireHeld) return;
 
-            Vector3 dir = (firePoint ? firePoint.forward : transform.forward).normalized;
-            Vector3 pos = firePoint ? firePoint.position : (transform.position + transform.forward * 0.6f);
-            float dmg = (Random.value <= critChance) ? baseDamage * 2f : baseDamage;
+        nextFire = Time.time + (1f / fireRate);
 
-            PhotonNetwork.Instantiate(
-                bulletResourcePath,
-                pos,
-                Quaternion.LookRotation(dir),
-                0,
-                new object[] { dir, dmg, bulletSpeed, stunOnHit }
-            );
-        }
+        Vector3 dir = (firePoint ? firePoint.forward : transform.forward).normalized;
+        Vector3 pos = firePoint ? firePoint.position : (transform.position + transform.forward * 0.6f);
+
+        float dmg = (Random.value <= critChance) ? baseDamage * 2f : baseDamage;
+
+        object[] data = new object[] { dir, dmg, bulletSpeed, stunOnHit };
+        PhotonNetwork.Instantiate(bulletResourcePath, pos, Quaternion.LookRotation(dir), 0, data);
     }
+
 }
