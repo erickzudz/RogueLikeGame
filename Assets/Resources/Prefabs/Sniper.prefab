@@ -241,20 +241,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   maxLife: 3
-  speed: 2
+  speed: 4
   damage: 1
   aggroRange: 8
-  shootRange: 10.5
+  shootRange: 10
   meleeRange: 1.6
-  timeBtwShoot: 1.8
+  timeBtwShoot: 2
   burstCount: 1
   burstInterval: 0.08
   spreadAngle: 0
   shootWhileChasing: 0
   aimAtTarget: 1
-  projSpeed: 18
+  projSpeed: 30
   stopToShoot: 1
-  kamikazeSpeedMult: 2
+  kamikazeSpeedMult: 3
   firePoint: {fileID: 3954831272977764289}
   bulletResourcePath: Prefabs/EnemyBullet
   explosionEffect: {fileID: 0}

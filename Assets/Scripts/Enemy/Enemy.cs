@@ -75,10 +75,10 @@ public class Enemy : MonoBehaviourPunCallbacks
         burstCount = 1;
         projSpeed = 12f;
         timeBtwShoot = 1.2f;
-        speed = 2f;
+        speed = 4f;
         shootRange = 7f;
         aggroRange = 8f;
-        kamikazeSpeedMult = 2f;
+        kamikazeSpeedMult = 3f;
 
         switch (t)
         {
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviourPunCallbacks
                 stopToShoot = true;
                 shootRange = 10f;
                 timeBtwShoot = 2.0f;
-                projSpeed = 18f;
+                projSpeed = 30f;
                 break;
 
             case EnemyType.Dasher:
