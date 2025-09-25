@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1184757276207754707}
   - component: {fileID: 6335406816093884635}
   - component: {fileID: 6117939523184096367}
+  - component: {fileID: 3310978124799753869}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -152,6 +153,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1184757276207754707}
+  - {fileID: 6117939523184096367}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -168,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 2
@@ -179,7 +181,7 @@ MonoBehaviour:
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 1
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
@@ -231,10 +233,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c55e76e9905dbe40a4640482012b6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  authority: 1
+  maxHP: 100
+  hp: 0
+  isDead: 0
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3310978124799753869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229376582448208371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d12e37a0cc4424e9dea49abcaa4fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &883156898671249502
 GameObject:
   m_ObjectHideFlags: 0

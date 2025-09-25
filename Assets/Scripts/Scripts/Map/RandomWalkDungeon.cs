@@ -13,7 +13,9 @@ public class RandomWalkDungeon : MonoBehaviour
     DungeonGrid grid;
     Dungeon3DView view;
 
-    void Start() { Generate();
+    void Start()
+    {
+        Generate();
     }
 
     public void Generate()

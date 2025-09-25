@@ -66,21 +66,27 @@
     <Compile Include="Assets\TestPlayModeBoostrap.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySpawnerPhoton.cs" />
     <Compile Include="Assets\Scripts\Scripts\SpawnPointPlacer.cs" />
+    <Compile Include="Assets\ARRaycastManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
+    <Compile Include="Assets\Scripts\Core\EnemyDeathHandler.cs" />
     <Compile Include="Assets\Scripts\Scripts\Map\RoomsCorridorsDungeon.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerSpawnerPhoton.cs" />
     <Compile Include="Assets\Scripts\Combat\NetworkBullet.cs" />
     <Compile Include="Assets\Scripts\Core\PhotonOfflineBootstrap.cs" />
     <Compile Include="Assets\Scripts\Combat\StunReceiver.cs" />
+    <Compile Include="Assets\Scripts\Core\PlayerRespawn.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
+    <Compile Include="Assets\Scripts\Core\PlayerDeathHandler.cs" />
     <Compile Include="Assets\Scripts\Scripts\Map\Dungeon3DView.cs" />
     <Compile Include="Assets\Scripts\Scripts\Map\TurtleModel.cs" />
+    <Compile Include="Assets\ARPlaneManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
+    <Compile Include="Assets\ExitPortalTrigger.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\TopDownFollowCam.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimatorBridgePhoton.cs" />
@@ -104,6 +110,7 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
     <Compile Include="Assets\Scripts\UISound.cs" />
     <Compile Include="Assets\Scripts\Core\MobileHUD.cs" />
+    <Compile Include="Assets\Scripts\Core\BossDeathHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

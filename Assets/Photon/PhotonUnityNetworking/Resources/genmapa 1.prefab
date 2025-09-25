@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7989967594247635635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3264714851750816758}
+  - component: {fileID: 6564633780837991613}
+  - component: {fileID: -8580242277892351827}
+  - component: {fileID: -8108579642410655979}
+  m_Layer: 6
+  m_Name: genmapa 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3264714851750816758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7989967594247635635}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40.861713, y: 36.180298, z: -1.9145637}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6564633780837991613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7989967594247635635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bd57a645e7d934580b6abb6dd2ed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSize: 2
+  wallHeight: 2
+  wallThickness: 0.2
+  floorMat: {fileID: 0}
+  wallMat: {fileID: 0}
+  generatedLayerName: Floor
+--- !u!114 &-8580242277892351827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7989967594247635635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c23b56973eba94c8fe1ef51a661e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 32
+  length: 32
+  seed: 0
+  minRooms: 6
+  maxRooms: 12
+  roomMinW: 4
+  roomMaxW: 8
+  roomMinH: 4
+  roomMaxH: 8
+  roomPadding: 1
+  extraConnections: 2
+--- !u!114 &-8108579642410655979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7989967594247635635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d0acd2a43ab1841b5689c0e3eb68c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeon: {fileID: 0}
+  root: {fileID: 0}
+  tileSize: 2
+  pivotOffset: {x: 0.5, y: 0.02, z: 0.5}
+  enemySpawns: 8
+  minDistanceFromPlayer: 6
+  clearOldSpawnsOnGenerate: 1

@@ -277,6 +277,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 2169280231716714994}
+  - {fileID: 6305514737003158741}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -293,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 2
@@ -304,7 +305,7 @@ MonoBehaviour:
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 1
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
@@ -325,7 +326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c55e76e9905dbe40a4640482012b6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  authority: 0
+  maxHP: 100
+  hp: 0
+  isDead: 0
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -353,10 +360,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   laserLength: 40
-  laserDPS: 3
+  laserDPS: 40
   laserTurnSpeed: 360
   laserFireTime: 2.5
-  useCone: 1
+  useCone: 0
   useRadial: 1
   useLaser: 1
   useSummon: 1

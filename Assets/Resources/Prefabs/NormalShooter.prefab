@@ -152,6 +152,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8623057920650464952}
+  - {fileID: 8717488003921323023}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -168,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 2
@@ -179,7 +180,7 @@ MonoBehaviour:
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 1
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
@@ -207,6 +208,7 @@ MonoBehaviour:
   aggroRange: 8
   shootRange: 7
   meleeRange: 1.6
+  retargetInterval: 0.5
   timeBtwShoot: 1.2
   burstCount: 1
   burstInterval: 0.08
@@ -231,7 +233,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c55e76e9905dbe40a4640482012b6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  authority: 0
+  maxHP: 100
+  hp: 0
+  isDead: 0
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
