@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 2
@@ -304,7 +304,7 @@ MonoBehaviour:
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 1
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
@@ -353,12 +353,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   laserLength: 40
-  laserDPS: 3
+  laserDPS: 1
   laserTurnSpeed: 360
   laserFireTime: 2.5
-  useCone: 1
+  useCone: 0
   useRadial: 1
-  useLaser: 1
+  useLaser: 0
   useSummon: 1
   enemyBulletPath: Prefabs/EnemyBullet
   coneBullets: 9
