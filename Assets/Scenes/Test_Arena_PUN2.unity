@@ -398,7 +398,7 @@ MonoBehaviour:
   - Prefabs/SniperV2
   totalEnemies: 8
   enemySpawnYOffset: 0.02
-  dungeon: {fileID: 1279095075}
+  dungeon: {fileID: 1279095078}
   fallbackSeed: 12345
 --- !u!4 &358879940
 Transform:
@@ -1119,8 +1119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d0acd2a43ab1841b5689c0e3eb68c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeon: {fileID: 1279095075}
-  root: {fileID: 3264714851750816758, guid: 191c8acb6e764664b8d301c2c44e533f, type: 3}
+  dungeon: {fileID: 1279095078}
   tileSize: 2
   pivotOffset: {x: 0.5, y: 0.02, z: 0.5}
   enemySpawns: 8
@@ -1167,6 +1166,17 @@ MonoBehaviour:
   floorMat: {fileID: 2100000, guid: 889c294ad527b0e43bfa33d96997f4ca, type: 2}
   wallMat: {fileID: 2100000, guid: 7ae8d72a9dd47ab42acd31bd8b7b5179, type: 2}
   generatedLayerName: Floor
+--- !u!114 &1279095078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8580242277892351827, guid: 191c8acb6e764664b8d301c2c44e533f, type: 3}
+  m_PrefabInstance: {fileID: 1279095072}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279095073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c23b56973eba94c8fe1ef51a661e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1330006393
 GameObject:
   m_ObjectHideFlags: 0
