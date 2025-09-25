@@ -8,6 +8,7 @@ using UnityEngine;
 public class Launcher : MonoBehaviourPunCallbacks
 {
     [Header("Prefabs (Resources path)")]
+    [Tooltip("Ruta dentro de Resources. Ej: Resources/Prefabs/Player.prefab -> \"Prefabs/Player\"")]
     public string playerPrefabPath = "Prefabs/Player";
 
     [Header("Enemies (Resources paths)")]
@@ -16,8 +17,13 @@ public class Launcher : MonoBehaviourPunCallbacks
     public int totalEnemies = 8;
     public float enemySpawnYOffset = 0.02f;
 
+    [Header("Exit portal (Resources path)")]
+    [Tooltip("Ruta dentro de Resources para el portal de salida")]
+    public string exitPortalPath = "Prefabs/ExitPortal";
+    public float portalYOffset = 0.02f;
+
     [Header("Mapa")]
-    public RoomsCorridorsDungeon dungeon;
+    public RoomsCorridorsDungeon dungeon;  // arrastra el componente del mapa (en escena)
     public int fallbackSeed = 12345;
 
     const string ROOM_SEED_KEY = "seed";
@@ -25,7 +31,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        if (!PhotonNetwork.IsConnected) PhotonNetwork.ConnectUsingSettings();
+        if (!PhotonNetwork.IsConnected)
+            PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
@@ -42,14 +49,14 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             int seed = Random.Range(int.MinValue, int.MaxValue);
             PhotonNetwork.CurrentRoom.SetCustomProperties(
-                new ExitGames.Client.Photon.Hashtable { { ROOM_SEED_KEY, seed } }
+                new Hashtable { { ROOM_SEED_KEY, seed } }
             );
         }
     }
 
     public override void OnJoinedRoom()
     {
-        // 1) Generar mapa con seed compartido
+        // 1) Obtener seed compartido y generar el mapa
         int seed = fallbackSeed;
         if (PhotonNetwork.CurrentRoom?.CustomProperties?.ContainsKey(ROOM_SEED_KEY) == true)
             seed = (int)PhotonNetwork.CurrentRoom.CustomProperties[ROOM_SEED_KEY];
@@ -57,37 +64,58 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (dungeon != null)
         {
             dungeon.seed = seed;
-            dungeon.Generate();                                // crea pisos+paredes con colliders :contentReference[oaicite:0]{index=0}
+            dungeon.Generate(); // construye pisos + paredes con colliders
+
             var placer = dungeon.GetComponent<SpawnPointPlacer>();
-            if (placer) placer.PlaceAll();                     // crea SP_Player, SP_Exit, SP_Enemy :contentReference[oaicite:1]{index=1}
+            if (placer) placer.PlaceAll(); // crea SP_Player, SP_Exit, SP_Enemy
         }
 
-        // 2) Spawn de ENEMIGOS (sólo Master)
+        // 2) Spawnear portal (sólo Master para evitar duplicados)
+        SpawnExitPortal();
+
+        // 3) Spawnear enemigos (sólo Master)
         SpawnEnemies(seed);
 
-        // 3) Spawn del PLAYER en SP_Player
+        // 4) Spawnear Player en SP_Player
         var spPlayer = FindObjectsOfType<SpawnPoint>()
-                       .FirstOrDefault(sp => sp.type == SpawnPointType.Player); // :contentReference[oaicite:2]{index=2}
+                       .FirstOrDefault(sp => sp.type == SpawnPointType.Player);
+
         Vector3 pos = spPlayer ? spPlayer.transform.position : Vector3.zero;
         Quaternion rot = spPlayer ? spPlayer.transform.rotation : Quaternion.identity;
+
         PhotonNetwork.Instantiate(playerPrefabPath, pos, rot);
+    }
+
+    void SpawnExitPortal()
+    {
+        if (!PhotonNetwork.IsMasterClient) return;
+        if (string.IsNullOrEmpty(exitPortalPath)) return;
+
+        var spExit = FindObjectsOfType<SpawnPoint>()
+                    .FirstOrDefault(sp => sp.type == SpawnPointType.Exit);
+        if (!spExit) return;
+
+        Vector3 p = spExit.transform.position + Vector3.up * portalYOffset;
+        Quaternion r = spExit.transform.rotation;
+
+        PhotonNetwork.Instantiate(exitPortalPath, p, r);
     }
 
     void SpawnEnemies(int seed)
     {
-        if (!PhotonNetwork.IsMasterClient) return; // evitar duplicados
+        if (!PhotonNetwork.IsMasterClient) return;
+        if (enemyPrefabPaths == null || enemyPrefabPaths.Length == 0) return;
 
         var enemyPoints = FindObjectsOfType<SpawnPoint>()
                           .Where(sp => sp.type == SpawnPointType.Enemy)
-                          .ToList();                                                   // :contentReference[oaicite:3]{index=3}
+                          .ToList();
+        if (enemyPoints.Count == 0) return;
 
-        if (enemyPoints.Count == 0 || enemyPrefabPaths == null || enemyPrefabPaths.Length == 0)
-            return;
-
-        // RNG determinista (mismo layout para todos)
+        // RNG determinista para elegir prefabs
         System.Random rng = new System.Random(seed ^ 0x51F00D);
 
-        // Si quieres “uno por SP”, usa: int count = Mathf.Min(totalEnemies, enemyPoints.Count);
+        // Si deseas “uno por SP” en lugar de totalEnemies, usa:
+        // int count = Mathf.Min(totalEnemies, enemyPoints.Count);
         int count = totalEnemies;
 
         for (int i = 0; i < count; i++)
@@ -96,7 +124,8 @@ public class Launcher : MonoBehaviourPunCallbacks
             string path = enemyPrefabPaths[rng.Next(enemyPrefabPaths.Length)];
             Vector3 p = sp.transform.position + Vector3.up * enemySpawnYOffset;
             Quaternion r = sp.transform.rotation;
-            PhotonNetwork.Instantiate(path, p, r); // owner: Master; otros sólo observan
+
+            PhotonNetwork.Instantiate(path, p, r);
         }
     }
 }

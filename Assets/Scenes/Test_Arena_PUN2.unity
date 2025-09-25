@@ -398,6 +398,8 @@ MonoBehaviour:
   - Prefabs/SniperV2
   totalEnemies: 8
   enemySpawnYOffset: 0.02
+  exitPortalPath: Prefabs/Prefabs/ExitPortal
+  portalYOffset: 0.02
   dungeon: {fileID: 1279095078}
   fallbackSeed: 12345
 --- !u!4 &358879940
