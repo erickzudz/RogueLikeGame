@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8408334203424721006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2174405130906553124}
+  - component: {fileID: 8344643135266447636}
+  - component: {fileID: 4255547959806965453}
+  - component: {fileID: 7242539795385500546}
+  m_Layer: 0
+  m_Name: DungeonRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2174405130906553124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8408334203424721006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8344643135266447636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8408334203424721006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bd57a645e7d934580b6abb6dd2ed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSize: 0.05
+  wallHeight: 0.08
+  wallThickness: 0.01
+  floorMat: {fileID: 2100000, guid: 7ae8d72a9dd47ab42acd31bd8b7b5179, type: 2}
+  wallMat: {fileID: 2100000, guid: 889c294ad527b0e43bfa33d96997f4ca, type: 2}
+--- !u!114 &4255547959806965453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8408334203424721006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c23b56973eba94c8fe1ef51a661e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 32
+  length: 32
+  seed: 0
+  minRooms: 6
+  maxRooms: 12
+  roomMinW: 4
+  roomMaxW: 8
+  roomMinH: 4
+  roomMaxH: 8
+  roomPadding: 1
+  extraConnections: 2
+--- !u!114 &7242539795385500546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8408334203424721006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42fcbe545fb4ad94b91e28c46f95904f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 7394454231838493126, guid: 8cc27368a898db04eb75fda614594d6f, type: 3}
+  exitPortalPrefab: {fileID: 8568886702205250126, guid: c69387e3817a1a84688cb37e310cb5c9, type: 3}
+  enemyPrefabs:
+  - {fileID: 725424230584840540, guid: 992e2c63d92db2c4985830eb8845656b, type: 3}
+  - {fileID: 5243965382017758937, guid: 34ffacc3d84c69d4f9a49cb644b18a28, type: 3}
+  - {fileID: 2866609204866742475, guid: a4bd25321bb5c824283eea2ff7fb0f0a, type: 3}
+  - {fileID: 229376582448208371, guid: d4367efba4dd58c4fb6bb77507106996, type: 3}
+  - {fileID: 1931392878650477691, guid: a0590f65781c7da46beb7a52ec2708ea, type: 3}
+  - {fileID: 2684433263010020498, guid: f03b830dc372ddc47b665af4e771fc1e, type: 3}
+  - {fileID: 7336759690071285273, guid: 927da96dabbc80142ae34c7bbe0a551b, type: 3}
+  yOffset: 0.02
+  snapToGrid: 1
+  enemyRingRadiusRatio: 0.3
