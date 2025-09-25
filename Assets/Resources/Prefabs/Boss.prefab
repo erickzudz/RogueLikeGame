@@ -277,6 +277,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 2169280231716714994}
+  - {fileID: 6305514737003158741}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -325,7 +326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c55e76e9905dbe40a4640482012b6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  authority: 0
+  maxHP: 100
+  hp: 0
+  isDead: 0
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -353,12 +360,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   laserLength: 40
-  laserDPS: 1
+  laserDPS: 40
   laserTurnSpeed: 360
   laserFireTime: 2.5
   useCone: 0
   useRadial: 1
-  useLaser: 0
+  useLaser: 1
   useSummon: 1
   enemyBulletPath: Prefabs/EnemyBullet
   coneBullets: 9

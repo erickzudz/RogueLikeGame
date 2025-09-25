@@ -30,14 +30,17 @@ public class Enemy : MonoBehaviourPunCallbacks
     public float shootRange = 7f;             // rango de disparo
     public float meleeRange = 1.6f;           // rango de contacto
 
+    [Header("Targeting")]
+    public float retargetInterval = 0.5f;     // cada cuánto reevaluar objetivo
+
     [Header("Shooting")]
-    public float timeBtwShoot = 1.2f;
+    public float timeBtwShoot = 1f;
     public int burstCount = 1;
-    public float burstInterval = 0.08f;
+    public float burstInterval = 0.0f;
     public float spreadAngle = 0f;
     public bool shootWhileChasing = false;
     public bool aimAtTarget = true;
-    public float projSpeed = 12f;
+    public float projSpeed = 8f;
 
     [Header("Behaviour")]
     public bool stopToShoot = true;           // snipers se plantan
@@ -51,18 +54,16 @@ public class Enemy : MonoBehaviourPunCallbacks
 
     // internos
     float life, shootTimer;
+    float retargetTimer;
     Transform target;
+    Health targetHealth;
     PhotonView pv;
+
     // opcional NavMesh:
     // public bool useNavMesh = false;
     // NavMeshAgent agent;
 
-    void Reset()
-    {
-        // valores por defecto seguros (como los presets del Brain)
-        ApplyPreset(type);
-    }
-
+    void Reset() => ApplyPreset(type);
     void OnValidate() => ApplyPreset(type);
 
     void ApplyPreset(EnemyType t)
@@ -146,26 +147,23 @@ public class Enemy : MonoBehaviourPunCallbacks
     {
         pv = GetComponent<PhotonView>();
         life = maxLife;
-
-        var p = GameObject.FindGameObjectWithTag("Player");
-        if (p) target = p.transform;
-
-        // opcional NavMesh:
         // agent = GetComponent<NavMeshAgent>();
         // if (!useNavMesh && agent) agent.enabled = false;
     }
 
     void Update()
     {
-        // IA solo en Master (equivalente al [Server] del Brain)
+        // IA solo en Master
         if (!PhotonNetwork.IsMasterClient) return;
 
-        if (!target)
+        // Re-evaluar objetivo
+        retargetTimer -= Time.deltaTime;
+        if (retargetTimer <= 0f || !target || (targetHealth && targetHealth.IsDead))
         {
-            var p = GameObject.FindGameObjectWithTag("Player");
-            if (p) target = p.transform;
-            else return;
+            AcquireTarget();
+            retargetTimer = retargetInterval;
         }
+        if (!target) return;
 
         float dist = Vector3.Distance(transform.position, target.position);
 
@@ -187,7 +185,7 @@ public class Enemy : MonoBehaviourPunCallbacks
             case EnemyType.Sniper:
             case EnemyType.SniperV2:
                 if (dist > shootRange) MoveTowards(target.position, 1f);
-                // si está en rango y es “stopToShoot”, no avanza
+                // si está en rango y es stopToShoot, no avanza
                 break;
 
             case EnemyType.Basher:
@@ -208,9 +206,11 @@ public class Enemy : MonoBehaviourPunCallbacks
         if (canShoot) TryShoot();
 
         // contacto melee + kamikaze
-        if (dist <= meleeRange)
+        if (dist <= meleeRange && targetHealth != null)
         {
-            if (target.TryGetComponent(out Health h)) h.TakeDamage(damage);
+            int attackerId = pv ? pv.ViewID : -1;
+            targetHealth.RequestDamage(damage, attackerId);
+
             if (type == EnemyType.Kamikaze || type == EnemyType.Dasher)
             {
                 if (explosionEffect) Instantiate(explosionEffect, transform.position, transform.rotation);
@@ -220,6 +220,29 @@ public class Enemy : MonoBehaviourPunCallbacks
     }
 
     // -------- helpers --------
+    void AcquireTarget()
+    {
+        target = null;
+        targetHealth = null;
+
+        var players = GameObject.FindGameObjectsWithTag("Player");
+        float bestSqr = float.MaxValue;
+
+        foreach (var go in players)
+        {
+            var h = go.GetComponent<Health>();
+            if (h == null || h.IsDead) continue;
+
+            float sqr = (go.transform.position - transform.position).sqrMagnitude;
+            if (sqr < bestSqr)
+            {
+                bestSqr = sqr;
+                target = go.transform;
+                targetHealth = h;
+            }
+        }
+    }
+
     void MoveTowards(Vector3 worldPos, float mult)
     {
         // con NavMesh sería SetDestination; aquí nos movemos directo
@@ -271,7 +294,7 @@ public class Enemy : MonoBehaviourPunCallbacks
 
             float stunSeconds = (type == EnemyType.Basher) ? 1.0f : 0f;
 
-            // Instanciar bala en red
+            // Instanciar bala en red (el Master es quien la crea)
             PhotonNetwork.Instantiate(
                 bulletResourcePath,
                 spawnPos,
@@ -284,6 +307,7 @@ public class Enemy : MonoBehaviourPunCallbacks
         }
     }
 
+    // Daño recibido por el enemigo (desde balas del player)
     public void TakeDamage(float dmg)
     {
         if (!PhotonNetwork.IsMasterClient) return;
@@ -301,7 +325,12 @@ public class Enemy : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsMasterClient) return;
         if (c.gameObject.CompareTag("Player"))
         {
-            if (c.gameObject.TryGetComponent(out Health h)) h.TakeDamage(damage);
+            var h = c.gameObject.GetComponent<Health>();
+            if (h != null)
+            {
+                int attackerId = pv ? pv.ViewID : -1;
+                h.RequestDamage(damage, attackerId);
+            }
             if (type == EnemyType.Kamikaze || type == EnemyType.Dasher)
             {
                 if (explosionEffect) Instantiate(explosionEffect, transform.position, transform.rotation);
