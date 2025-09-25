@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3264714851750816758}
-  - component: {fileID: 4150438346296630005}
-  - component: {fileID: 4934390432337213846}
+  - component: {fileID: 6564633780837991613}
+  - component: {fileID: -8580242277892351827}
+  - component: {fileID: -8108579642410655979}
   m_Layer: 6
   m_Name: genmapa 1
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4150438346296630005
+--- !u!114 &6564633780837991613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,21 +43,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7989967594247635635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: 11500000, guid: d4bd57a645e7d934580b6abb6dd2ed7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 4934390432337213846}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &4934390432337213846
+  tileSize: 2
+  wallHeight: 2
+  wallThickness: 0.2
+  floorMat: {fileID: 0}
+  wallMat: {fileID: 0}
+  generatedLayerName: Floor
+--- !u!114 &-8580242277892351827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,27 +61,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7989967594247635635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Script: {fileID: 11500000, guid: 32c23b56973eba94c8fe1ef51a661e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PositionModel:
-    SynchronizeEnabled: 1
-    TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    ExtrapolateOption: 0
-    ExtrapolateSpeed: 1
-    ExtrapolateIncludingRoundTripTime: 1
-    ExtrapolateNumberOfStoredPositions: 1
-  m_RotationModel:
-    SynchronizeEnabled: 0
-    InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
-  m_ScaleModel:
-    SynchronizeEnabled: 1
-    InterpolateOption: 0
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 0
+  width: 32
+  length: 32
+  seed: 0
+  minRooms: 6
+  maxRooms: 12
+  roomMinW: 4
+  roomMaxW: 8
+  roomMinH: 4
+  roomMaxH: 8
+  roomPadding: 1
+  extraConnections: 2
+--- !u!114 &-8108579642410655979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7989967594247635635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d0acd2a43ab1841b5689c0e3eb68c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeon: {fileID: 0}
+  root: {fileID: 0}
+  tileSize: 2
+  pivotOffset: {x: 0.5, y: 0.02, z: 0.5}
+  enemySpawns: 8
+  minDistanceFromPlayer: 6
+  clearOldSpawnsOnGenerate: 1
