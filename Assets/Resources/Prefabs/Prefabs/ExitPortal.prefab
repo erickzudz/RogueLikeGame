@@ -4918,3 +4918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2b5714f7fad7b45a604ea8112bbd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onLocalPlayerWin:
+    m_PersistentCalls:
+      m_Calls: []

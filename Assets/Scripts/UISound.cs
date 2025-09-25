@@ -1,38 +1,40 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class UISound : MonoBehaviour
 {
-    private static UISound instance;
-    private AudioSource audioSource;
+    public static UISound I;
 
-    [Header("Clips")]
-    public AudioClip clickClip;   // arrastra tu "menuclic" aquí
+    [Header("Audio")]
+    public AudioSource sfxSource;     // Asigna el AudioSource del UIAudio
+    public AudioClip clickClip;       // Asigna tu clip de clic (WAV/OGG recomendado)
+    [Range(0f, 1f)] public float clickVolume = 1f;
+    public float delayBeforeLoad = 0.12f; // 120 ms para que se oiga
 
     void Awake()
     {
-        // Singleton para usarlo desde cualquier botón
-        if (instance == null)
-        {
-            instance = this;
-            audioSource = GetComponent<AudioSource>();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (I != null && I != this) { Destroy(gameObject); return; }
+        I = this;
+        if (sfxSource == null) sfxSource = GetComponent<AudioSource>();
+        DontDestroyOnLoad(gameObject);        // no se destruye al cambiar de escena
     }
 
-    // Método estático que llaman los botones
-    public static void PlayClick()
+    public void PlayClick()
     {
-        if (instance != null && instance.clickClip != null)
-        {
-            instance.instanceAudio();
-        }
+        if (sfxSource && clickClip)
+            sfxSource.PlayOneShot(clickClip, clickVolume);
     }
 
-    private void instanceAudio()
+    public void PlayClickThenLoad(string sceneName)
     {
-        audioSource.PlayOneShot(clickClip);
+        StartCoroutine(PlayAndLoad(sceneName));
+    }
+
+    IEnumerator PlayAndLoad(string sceneName)
+    {
+        PlayClick();
+        yield return new WaitForSecondsRealtime(delayBeforeLoad);
+        SceneManager.LoadScene(sceneName);
     }
 }
