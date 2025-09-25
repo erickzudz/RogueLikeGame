@@ -27,14 +27,7 @@ public class ARDungeonBootstrap : MonoBehaviour
     [Header("Opcional UI")]
     public Transform reticle;
 
-    DungeonARPlacer placer;   // si existe
     Transform dungeonRoot;    // instancia viva
-
-    void Awake()
-    {
-        placer = FindObjectOfType<DungeonARPlacer>(true);
-        Debug.Log($"{LOG}Awake. Placer: {(placer ? placer.name : "null")}");
-    }
 
     void Start()
     {

@@ -17,19 +17,21 @@ public class RoomsCorridorsDungeon : MonoBehaviour
     public int roomMaxW = 8;
     public int roomMinH = 4;
     public int roomMaxH = 8;
-    public int roomPadding = 1;          // margen para que no se toquen
+    public int roomPadding = 1;
 
     [Header("Corridors")]
-    public int extraConnections = 2;      // pasillos extra además del MST
+    public int extraConnections = 2;
 
     DungeonGrid grid;
     Dungeon3DView view;
 
+    // NUEVO: datos expuestos
     public Vector2Int StartCell { get; private set; }
-    public Transform SpawnAnchor { get; private set; }
-    public Vector2Int EndCell { get; internal set; }
+    public Vector2Int EndCell { get; private set; }
+    public List<Vector2Int> RoomCenters { get; private set; }
 
-    void Start() => Generate();
+    // Si prefieres controlar desde Bootstrap, comenta esto:
+    // void Start() => Generate();
 
     public void Generate()
     {
@@ -41,24 +43,28 @@ public class RoomsCorridorsDungeon : MonoBehaviour
 
         var rnd = (seed == 0) ? new System.Random() : new System.Random(seed);
 
-        // 1) COLOCAR SALAS (sin solaparse, con padding)
+        // 1) Rooms
         var rooms = PlaceRooms(rnd, clamp);
 
-        // 2) CONECTAR SALAS por centros con un MST + extras
+        // 2) Conectar (MST + extras)
         ConnectRooms(rnd, rooms);
 
-        // 3) Colorear inicio/fin (opcional)
-        if (rooms.Count > 0)
+        // 3) Centros/inicio/fin
+        var centers = rooms.Select(Center).ToList();
+        RoomCenters = centers;
+
+        if (centers.Count > 0)
         {
-            grid.SetColor(Center(rooms[0]), 1);                      // inicio rojo
-            grid.SetColor(Center(rooms[rooms.Count - 1]), 2);        // meta verde
+            StartCell = centers[0];
+            EndCell = centers.OrderBy(c => Manhattan(c, StartCell)).Last();
+
+            // coloreo opcional de debug (si tu grid soporta color)
+            grid.SetColor(StartCell, 1);
+            grid.SetColor(EndCell, 2);
         }
 
-        // 4) Construir 3D
+        // 4) Render 3D
         view.Build(grid);
-
-        var start = Center(rooms[0]);
-        var goal = Center(rooms[^1]);
     }
 
     // ---------- ROOMS ----------
@@ -84,7 +90,7 @@ public class RoomsCorridorsDungeon : MonoBehaviour
             if (overlaps) continue;
 
             placed.Add(r);
-            CarveRoom(r);   // abrir puertas internas
+            CarveRoom(r);
         }
 
         return placed;
@@ -92,12 +98,11 @@ public class RoomsCorridorsDungeon : MonoBehaviour
 
     void CarveRoom(RectInt r)
     {
-        // Abre todas las celdas del rectángulo y sus conexiones internas
+        // Abre todas las celdas del rect y conexiones internas
         for (int x = r.xMin; x < r.xMax; x++)
             for (int y = r.yMin; y < r.yMax; y++)
             {
                 var p = new Vector2Int(x, y);
-                // conecta con vecinos dentro del mismo rect
                 var right = new Vector2Int(x + 1, y);
                 if (x + 1 < r.xMax) grid.OpenBetween(p, right);
                 var up = new Vector2Int(x, y + 1);
@@ -117,7 +122,7 @@ public class RoomsCorridorsDungeon : MonoBehaviour
         for (int i = 0; i < centers.Count; i++)
             for (int j = i + 1; j < centers.Count; j++)
             {
-                int w = Manhattan(centers[i], centers[j]) + rnd.Next(5); // jitter
+                int w = Manhattan(centers[i], centers[j]) + rnd.Next(5);
                 edges.Add(new Edge(i, j, w));
             }
         edges.Sort((a, b) => a.w.CompareTo(b.w));
@@ -135,7 +140,7 @@ public class RoomsCorridorsDungeon : MonoBehaviour
             }
         }
 
-        // Pasillos extra para loops
+        // Extras para loops
         var others = edges.Except(mst).ToList();
         for (int i = 0; i < extraConnections && others.Count > 0; i++)
         {
@@ -166,9 +171,12 @@ public class RoomsCorridorsDungeon : MonoBehaviour
     }
 
     // ---------- Utils ----------
-    static int Manhattan(Vector2Int a, Vector2Int b) => Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
-    static Vector2Int Center(RectInt r) => new Vector2Int(r.x + r.width / 2, r.y + r.height / 2);
-    static RectInt Inflate(RectInt r, int pad) => new RectInt(r.x - pad, r.y - pad, r.width + pad * 2, r.height + pad * 2);
+    static int Manhattan(Vector2Int a, Vector2Int b)
+        => Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+    static Vector2Int Center(RectInt r)
+        => new Vector2Int(r.x + r.width / 2, r.y + r.height / 2);
+    static RectInt Inflate(RectInt r, int pad)
+        => new RectInt(r.x - pad, r.y - pad, r.width + pad * 2, r.height + pad * 2);
 
     struct Edge { public int a, b, w; public Edge(int a, int b, int w) { this.a = a; this.b = b; this.w = w; } }
     class DSU

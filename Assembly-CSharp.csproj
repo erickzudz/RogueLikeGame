@@ -62,21 +62,19 @@
   <ItemGroup>
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Enemy\BossController.cs" />
+    <Compile Include="Assets\Scripts\Scripts\Map\SpawnPoint.cs" />
     <Compile Include="Assets\TestPlayModeBoostrap.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySpawnerPhoton.cs" />
+    <Compile Include="Assets\Scripts\Scripts\SpawnPointPlacer.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
     <Compile Include="Assets\Scripts\Scripts\Map\RoomsCorridorsDungeon.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerSpawnerPhoton.cs" />
     <Compile Include="Assets\Scripts\Combat\NetworkBullet.cs" />
-    <Compile Include="Assets\Scripts\Scripts\ARBootstrap.cs" />
     <Compile Include="Assets\Scripts\Core\PhotonOfflineBootstrap.cs" />
     <Compile Include="Assets\Scripts\Combat\StunReceiver.cs" />
-    <Compile Include="Assets\Scripts\Scripts\Spawn\DungeonSpawnerButton.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
-    <Compile Include="Assets\Scripts\Scripts\Map\ARPlacer.cs" />
     <Compile Include="Assets\Scripts\Scripts\Map\Dungeon3DView.cs" />
-    <Compile Include="Assets\Scripts\Scripts\PlaceMapOnPlane.cs" />
     <Compile Include="Assets\Scripts\Scripts\Map\TurtleModel.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
@@ -85,15 +83,12 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\TopDownFollowCam.cs" />
-    <Compile Include="Assets\Scripts\Scripts\CenterReticlePlacer.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimatorBridgePhoton.cs" />
-    <Compile Include="Assets\Scripts\Scripts\Spawn\RespawnOnFall.cs" />
     <Compile Include="Assets\Scripts\Core\MobileButton.cs" />
     <Compile Include="Assets\Scripts\Core\MobileJoystick.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Player\Health.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerNetwork.cs" />
-    <Compile Include="Assets\Scripts\Scripts\Map\ARController.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorBridge.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
@@ -104,12 +99,9 @@
     <Compile Include="Assets\Scripts\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Launcher.cs" />
     <Compile Include="Assets\Scripts\Scripts\Map\DungeonGrid.cs" />
-    <Compile Include="Assets\Scripts\Scripts\Map\DungeonARPlacer.cs" />
     <Compile Include="Assets\Scripts\Core\NetworkBootstrap.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
-    <Compile Include="Assets\Scripts\Scripts\ARStartup.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
-    <Compile Include="Assets\Scripts\Scripts\Spawn\DungeonAutoSpawner.cs" />
     <Compile Include="Assets\Scripts\UISound.cs" />
     <Compile Include="Assets\Scripts\Core\MobileHUD.cs" />
   </ItemGroup>
