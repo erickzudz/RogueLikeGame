@@ -6,21 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: b9f87856e3aabff4182b3d91ef5549de
-  - enabled: 0
-    path: Assets/Scenes/menu.unity
-    guid: 43cc8ee6964d75c4ba5dcaffe2c4cd5b
-  - enabled: 0
-    path: Assets/Scenes/MenuSound.unity
-    guid: bbc612f6274d3764fa129dab871d322e
-  - enabled: 0
-    path: Assets/Scenes/SinglePlayer.unity
-    guid: db57efc290a8bdb4b9a83583545e36b4
-  - enabled: 1
-    path: Assets/Scenes/Test_Arena_PUN2.unity
-    guid: 474a4629058cc724fa663f82eb2dfe23
-  - enabled: 0
     path: Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/DemoHub-Scene.unity
     guid: 7dfd47dc8b9484dd79d8636d8603a9e5
   - enabled: 0
@@ -63,6 +48,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/SlotCar-Scene.unity
     guid: 711b38c07f2cf904f81b3422c67f1825
+  - enabled: 1
+    path: Assets/Scenes/Test_Arena_PUN2.unity
+    guid: 474a4629058cc724fa663f82eb2dfe23
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 5fca853b997ab464fa5fa8e88f34a910, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 49f34ee97c2c0874daae47385364bea5, type: 2}
