@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabPath: Prefabs/Player
-  enemyPrefabPath: Prefabs/Sniper
+  enemyPrefabPath: Prefabs/Boss
   playerSpawnPos: {x: 0, y: 0.6, z: 0}
   initialEnemies: 1
   arenaRadius: 10

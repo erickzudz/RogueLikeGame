@@ -254,7 +254,7 @@ MonoBehaviour:
   aimAtTarget: 1
   projSpeed: 20
   stopToShoot: 1
-  kamikazeSpeedMult: 2
+  kamikazeSpeedMult: 3
   firePoint: {fileID: 295686464759639355}
   bulletResourcePath: Prefabs/EnemyBullet
   explosionEffect: {fileID: 0}
